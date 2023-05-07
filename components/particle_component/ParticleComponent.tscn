@@ -25,14 +25,21 @@ hue_variation_max = 0.1
 turbulence_enabled = true
 turbulence_noise_strength = 2.0
 
-[node name="Particle" type="Node2D"]
+[node name="ParticleComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_onf8w")
+metadata/_edit_use_anchors_ = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 visible = false
 position = Vector2(939, 502)
 amount = 50
-lifetime = 30.0
+lifetime = 60.0
 preprocess = 30.0
 fixed_fps = 30
 texture = ExtResource("2_tm3sr")
@@ -57,5 +64,6 @@ position = Vector2(975, 532)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_x7hpa")
 texture = ExtResource("2_tm3sr")
-lifetime = 30.0
+lifetime = 60.0
 preprocess = 30.0
+randomness = 0.5

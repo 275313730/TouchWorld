@@ -1,17 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://imj5i8nybpe5"]
+[gd_scene load_steps=7 format=3 uid="uid://bx8i2ty0qdywp"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_jli1o"]
-[ext_resource type="Texture2D" uid="uid://c7wpyh6iqhr08" path="res://assets/backgrounds/miku1.png" id="2_4ift3"]
-[ext_resource type="PackedScene" uid="uid://bd6vm3q55qboe" path="res://preset/shortcut_panel/ShortcutPanel.tscn" id="3_mipwu"]
+[ext_resource type="PackedScene" uid="uid://dyx3n2sqlq6ov" path="res://components/background_component/BackgroundComponent.tscn" id="2_lpgd4"]
+[ext_resource type="PackedScene" uid="uid://bghihm8r4kr57" path="res://components/shortcut_component/ShortcutComponent.tscn" id="3_lmoou"]
 [ext_resource type="PackedScene" uid="uid://by0h8cxwg7frl" path="res://components/time_component/TimeComponent.tscn" id="4_ppvs5"]
 [ext_resource type="PackedScene" uid="uid://bqnekwopyrc8e" path="res://components/particle_component/ParticleComponent.tscn" id="5_4qdf2"]
-[ext_resource type="PackedScene" uid="uid://4jw5jbqiaoxc" path="res://ParticleOption.tscn" id="6_nn5nj"]
+[ext_resource type="PackedScene" uid="uid://bfov35j3gicna" path="res://options/Options.tscn" id="6_vs25g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ydxf"]
-bg_color = Color(0, 0, 0, 0.862745)
-
-[node name="Main" type="Control"]
-layout_mode = 3
+[node name="Main" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,85 +15,43 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 script = ExtResource("1_jli1o")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
-[node name="BackgroundImage" type="TextureRect" parent="."]
-modulate = Color(0.764706, 0.764706, 0.764706, 1)
+[node name="Components" type="Control" parent="." groups=["Persist"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_4ift3")
-expand_mode = 2
-stretch_mode = 3
-metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
-[node name="ShorcutPanel" parent="." instance=ExtResource("3_mipwu")]
+[node name="BackgroundComponent" parent="Components" instance=ExtResource("2_lpgd4")]
 layout_mode = 1
-anchor_left = 0.0359375
-anchor_top = 0.0861111
-anchor_right = 0.368937
-anchor_bottom = 0.530111
 
-[node name="TimeComponent" parent="." instance=ExtResource("4_ppvs5")]
+[node name="ParticleComponent" parent="Components" instance=ExtResource("5_4qdf2")]
 layout_mode = 1
-anchor_left = 0.747396
-anchor_top = 0.0388889
-anchor_right = 0.976563
-anchor_bottom = 0.15
+
+[node name="TimeComponent" parent="Components" instance=ExtResource("4_ppvs5")]
+layout_mode = 1
+anchor_left = 0.746875
+anchor_top = 0.0611111
+anchor_right = 0.976042
+anchor_bottom = 0.172222
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 1.52588e-05
 
-[node name="Particle" parent="." instance=ExtResource("5_4qdf2")]
+[node name="ShortcutComponent" parent="Components" instance=ExtResource("3_lmoou")]
+layout_mode = 1
+anchor_left = 0.0515625
+anchor_top = 0.0935185
+anchor_right = 0.384895
+anchor_bottom = 0.537962
+offset_right = 0.000671387
+offset_bottom = 0.000488281
 
-[node name="Options" type="Panel" parent="."]
+[node name="Options" parent="." instance=ExtResource("6_vs25g")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2ydxf")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
-custom_minimum_size = Vector2(760, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.302083
-anchor_top = 0.421296
-anchor_right = 0.697917
-anchor_bottom = 0.578704
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Back" type="Button" parent="Options/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "- 返回 -"
-
-[node name="EditMode" type="Button" parent="Options/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "- 编辑模式(已关闭) -"
-
-[node name="ParticleSetting" type="Button" parent="Options/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "- 粒子设置 -"
-
-[node name="BackgroundSetting" type="Button" parent="Options/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "- 背景设置 -"
-
-[node name="Exit" type="Button" parent="Options/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "- 退出 -"
-
-[node name="ParticleOption" parent="." instance=ExtResource("6_nn5nj")]
-visible = false
-layout_mode = 1
+metadata/_edit_lock_ = true

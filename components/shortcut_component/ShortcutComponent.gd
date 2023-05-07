@@ -1,31 +1,58 @@
-extends TextureRect
+extends Component
 class_name ShortCutComponent
 
-@onready var button = $Button
+@export var shortcut_template :PackedScene
+@onready var container = $Container
 
-var path := ""
+var selected_panel:=false
+
+var shortcuts :Array[String]= []
 
 func _ready():
-  resize()
-  button.mouse_entered.connect(func():modulate = Color(0.8,0.8,0.8,1))
-  button.mouse_exited.connect(func():modulate = Color(1,1,1,1))
-  button.pressed.connect(open_exe)
+  get_tree().root.files_dropped.connect(load_files)
 
-func set_path(_path:String,_icon_path:String):
-  path = _path
-  texture = load(_icon_path)
+func _input(event):
+  if not GlobalSettings.edit_mode:return
+  if event is InputEventMouseMotion:
+    selected_panel = get_global_rect().has_point(event.position)
 
-func resize():
-  var target_size = Vector2(GlobalSettings.shortcut_size,GlobalSettings.shortcut_size)
-  set_deferred("size",target_size)
-  set_deferred("custom_minimum_size",target_size)
-  button.set_deferred("size",target_size)
-  button.set_deferred("custom_minimum_size",target_size)
+func load_files(_files:PackedStringArray):
+  if GlobalSettings.edit_mode and selected_panel:
+    for file_path in _files:
+      var path_array = file_path.split("\\")
+      var file_name = path_array[path_array.size()-1]
+      if "." in file_name:
+        file_name = file_name.split('.')[0]
+      var icon_path = extract_icon(file_name,file_path)
+      add_shortcut(file_path,file_name,icon_path)
 
-func open_exe():
-  if path == "":return
+func add_shortcut(_file_path:String,_file_name:String,_icon_path:String):
+  var new_shortcut = shortcut_template.instantiate() as ShortCutComponent
+  container.add_child(new_shortcut)
+  new_shortcut.set_path(_file_path,_icon_path)
+  shortcuts.append(_file_name)
+  GlobalSettings.save_data()
 
-  if "lnk" in path:
-    OS.execute("cmd.exe",["/c",path])
-  else:
-    OS.execute(path,[])
+func extract_icon(_file_name:String,_file_path:String)->String:
+  var res_absolute_path = ProjectSettings.globalize_path("res://")
+  var extraction_absolute_path = res_absolute_path+ "tools/extracticon.exe"
+  if "." in _file_name:
+    _file_name = _file_name.split(".")[0]
+  var icon_path = res_absolute_path+'icons/'+_file_name+'.png'
+  if not FileAccess.file_exists(icon_path):
+    var final_execute_string =  extraction_absolute_path + ' "' + _file_path + '" "' + icon_path + '"'
+    OS.execute("cmd.exe",["/c",final_execute_string])
+  return "res://icons/" + _file_name + ".png"
+
+func save_data()->Dictionary:
+  var data = super()
+  data["shortcuts"] = shortcuts
+  return data
+
+func load_data(_component_data:Dictionary):
+  super(_component_data)
+  for key in _component_data:
+    var data = _component_data[key]
+    if key != "shortcuts":continue
+    for shortcut_data in data:
+      add_shortcut(shortcut_data["file_path"],shortcut_data["file_name"],shortcut_data["icon_path"])

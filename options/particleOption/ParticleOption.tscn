@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4jw5jbqiaoxc"]
+[gd_scene load_steps=6 format=3 uid="uid://bvk0g5cpdcjc3"]
 
-[ext_resource type="Script" path="res://ParticleOption.gd" id="1_txa51"]
+[ext_resource type="Script" path="res://options/particleOption/ParticleOption.gd" id="1_gd1ni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb747"]
 bg_color = Color(0, 0, 0, 0.941176)
@@ -44,14 +44,10 @@ corner_radius_bottom_left = 2
 [node name="ParticleOption" type="Panel"]
 custom_minimum_size = Vector2(1920, 64)
 anchors_preset = -1
-anchor_top = 0.940741
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 64.0
-grow_horizontal = 2
-grow_vertical = 0
+anchor_bottom = 0.0592593
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb747")
-script = ExtResource("1_txa51")
+script = ExtResource("1_gd1ni")
 metadata/_edit_use_anchors_ = true
 
 [node name="ParticlePreview" type="HBoxContainer" parent="."]

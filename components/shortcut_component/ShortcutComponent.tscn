@@ -1,26 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://db0ae3qlop81o"]
+[gd_scene load_steps=5 format=3 uid="uid://bghihm8r4kr57"]
 
-[ext_resource type="Texture2D" uid="uid://chh6rnpt7dqis" path="res://icon.svg" id="1_sxdgg"]
 [ext_resource type="Script" path="res://components/shortcut_component/ShortcutComponent.gd" id="2_2lap2"]
+[ext_resource type="PackedScene" path="res://sprites/shortcut/Shortcut.tscn" id="2_wndfa"]
+[ext_resource type="PackedScene" uid="uid://d0mni82m317ko" path="res://sprites/preset_panel/PresetPanel.tscn" id="3_teawq"]
+[ext_resource type="PackedScene" uid="uid://cjbu28najjfra" path="res://components/resize_component/ResizeComponent.tscn" id="4_xrxoq"]
 
-[node name="ShortcutComponent" type="TextureRect"]
-custom_minimum_size = Vector2(60, 60)
+[node name="ShortcutComponent" type="Control"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 3
+anchor_right = 0.333333
+anchor_bottom = 0.444444
+script = ExtResource("2_2lap2")
+shortcut_template = ExtResource("2_wndfa")
+metadata/_edit_use_anchors_ = true
+
+[node name="PresetPanel" parent="." instance=ExtResource("3_teawq")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1860.0
-offset_bottom = -1020.0
-texture = ExtResource("1_sxdgg")
-expand_mode = 1
-script = ExtResource("2_2lap2")
-metadata/_edit_use_anchors_ = true
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
+[node name="Container" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1840.0
-offset_bottom = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ResizeComponent" parent="." instance=ExtResource("4_xrxoq")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
 metadata/_edit_use_anchors_ = true

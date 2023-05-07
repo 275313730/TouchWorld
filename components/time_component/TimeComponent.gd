@@ -1,4 +1,4 @@
-extends Control
+extends Component
 class_name TimeComponent
 
 @onready var time_display = $TimeDisplay
