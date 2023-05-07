@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqnekwopyrc8e"]
+
+[ext_resource type="Script" path="res://components/particle_component/ParticleComponent.gd" id="1_onf8w"]
+[ext_resource type="Texture2D" uid="uid://bw0mpvmqf8xnn" path="res://assets/particles/defalut.png" id="2_tm3sr"]
+
+[sub_resource type="Gradient" id="Gradient_6k0rx"]
+offsets = PackedFloat32Array(0, 0.315789, 0.677193, 1)
+colors = PackedColorArray(0.684127, 1, 0.998756, 1, 0.802681, 1, 0.798114, 1, 1, 1, 0.615686, 1, 1, 0.780392, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x7hpa"]
+emission_shape = 3
+emission_box_extents = Vector3(960, 540, 1)
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.8
+color = Color(0.827451, 0.831373, 0.831373, 1)
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 2.0
+
+[node name="Particle" type="Node2D"]
+script = ExtResource("1_onf8w")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(939, 502)
+amount = 50
+lifetime = 30.0
+preprocess = 30.0
+fixed_fps = 30
+texture = ExtResource("2_tm3sr")
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+radial_accel_min = 0.05
+radial_accel_max = 0.05
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+color = Color(0.796078, 0.796078, 0.796078, 1)
+color_ramp = SubResource("Gradient_6k0rx")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(975, 532)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_x7hpa")
+texture = ExtResource("2_tm3sr")
+lifetime = 30.0
+preprocess = 30.0

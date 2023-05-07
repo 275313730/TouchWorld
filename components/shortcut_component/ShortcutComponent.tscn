@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://db0ae3qlop81o"]
+
+[ext_resource type="Texture2D" uid="uid://chh6rnpt7dqis" path="res://icon.svg" id="1_sxdgg"]
+[ext_resource type="Script" path="res://components/shortcut_component/ShortcutComponent.gd" id="2_2lap2"]
+
+[node name="ShortcutComponent" type="TextureRect"]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1860.0
+offset_bottom = -1020.0
+texture = ExtResource("1_sxdgg")
+expand_mode = 1
+script = ExtResource("2_2lap2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1840.0
+offset_bottom = -1000.0
+metadata/_edit_use_anchors_ = true

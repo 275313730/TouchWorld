@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg7b3bk5x6iqv"]
+
+[ext_resource type="Script" path="res://components/resize_component/ResizableComponent.gd" id="1_a5v3c"]
+
+[node name="ResizeComponent" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchor_right = 0.0333333
+anchor_bottom = 0.0592593
+script = ExtResource("1_a5v3c")
+
+[node name="RightDrag" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(5, 64)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 10
+
+[node name="LeftDrag" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(5, 64)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 10
+
+[node name="TopDrag" type="VSplitContainer" parent="."]
+custom_minimum_size = Vector2(64, 5)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 9
+
+[node name="BottomDrag" type="VSplitContainer" parent="."]
+custom_minimum_size = Vector2(64, 5)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 9

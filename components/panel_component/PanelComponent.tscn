@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0mni82m317ko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyse4"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 20
+
+[node name="PanelComponent" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.033
+anchor_bottom = 0.059
+offset_right = -63.36
+offset_bottom = -63.72
+theme_override_styles/panel = SubResource("StyleBoxFlat_dyse4")
