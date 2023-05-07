@@ -10,8 +10,8 @@ func _ready():
 
 func _process(_delta:float):
   time_passed += _delta
-  if time_passed < 1.0:return
-  time_passed -= 1.0
+  if time_passed < 0.5:return
+  time_passed -= 0.5
   show_time()
 
 func show_time():
