@@ -37,13 +37,16 @@ mouse_default_cursor_shape = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="TopDrag" type="VSplitContainer" parent="."]
-custom_minimum_size = Vector2(64, 1)
+custom_minimum_size = Vector2(64, 1.5)
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
+anchor_bottom = 0.0234375
+offset_bottom = -1.5
 grow_horizontal = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 9
+metadata/_edit_use_anchors_ = true
 
 [node name="BottomDrag" type="VSplitContainer" parent="."]
 custom_minimum_size = Vector2(64, 1)

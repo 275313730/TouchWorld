@@ -4,6 +4,11 @@ class_name Main
 @onready var components = $Components
 
 func _ready():
+  if GlobalSettings.is_full_screen:
+    get_window().mode = Window.MODE_FULLSCREEN
+  else:
+    get_window().mode = Window.MODE_WINDOWED
+  get_tree().root.size = Vector2(1920,1080)
   load_components()
 
 func load_components():
@@ -19,3 +24,5 @@ func load_components():
       var new_component = component_template.instantiate() as Component
       components.add_child(new_component)
       new_component.load_data(component_data)
+
+  GlobalSettings.auto_save()

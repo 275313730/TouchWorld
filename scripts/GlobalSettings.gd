@@ -62,20 +62,29 @@ func _ready():
   else:
     save_data()
 
+func auto_save():
+  var timer = get_tree().create_timer(1)
+  await timer.timeout
+  save_data()
+  auto_save()
+
 func load_data():
   loading = true
   var data_file = FileAccess.open("user://touch_world.dat",FileAccess.READ)
-  var data = JSON.parse_string(data_file.get_as_text())
+  var data = JSON.parse_string(data_file.get_as_text()) as Dictionary
   var rgb = data["background_brightness"]
+
   background_brightness = Color(rgb[0],rgb[1],rgb[2])
   background_auto_change = data["background_auto_change"]
   background_change_time = data["background_change_time"]
   use_particle = data["use_particle"]
   particle_mode = data["particle_mode"]
   current_particle_path = data["current_particle_path"]
+  is_full_screen = data['is_full_screen']
   components = data['components']
   data_file.close()
   loading = false
+  auto_save()
 
 ## 保存数据
 func save_data():
@@ -96,6 +105,7 @@ func save_data():
     use_particle=use_particle,
     particle_mode=particle_mode,
     current_particle_path=current_particle_path,
+    is_full_screen=is_full_screen,
     components=components
   }
 

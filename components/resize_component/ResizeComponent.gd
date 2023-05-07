@@ -64,12 +64,21 @@ func check_edit_mode():
     top_drag.mouse_default_cursor_shape = CURSOR_ARROW
     bottom_drag.mouse_default_cursor_shape = CURSOR_ARROW
 
-func move(_shift:Vector2)->bool:
+func move(_shift:Vector2):
   var final_position = get_parent().global_position + _shift
-  if final_position.x <= 0 or final_position.y <= 0 :return false
-  if final_position.x + get_parent().size.x >= get_tree().root.size.x or final_position.y + get_parent().size.y >= get_tree().root.size.y:return false
+  if final_position.x <= 0 :
+    var final_x = -get_parent().global_position.x
+    _shift = Vector2(final_x,_shift.y)
+  if final_position.y <= 0 :
+    var final_y = -get_parent().global_position.y
+    _shift = Vector2(_shift.x,final_y)
+  if final_position.x + get_parent().size.x >= get_tree().root.size.x:
+    var final_x = get_tree().root.size.x - get_parent().size.x - get_parent().global_position.x
+    _shift = Vector2(final_x,_shift.y)
+  if final_position.y + get_parent().size.y >= get_tree().root.size.y:
+    var final_y = get_tree().root.size.y - get_parent().size.y - get_parent().global_position.y
+    _shift = Vector2(_shift.x,final_y)
   get_parent().position = get_parent().position + _shift
-  return true
 
 func resize(_shift:Vector2):
   if direction == Vector2.RIGHT:
@@ -79,8 +88,8 @@ func resize(_shift:Vector2):
   if direction == Vector2.LEFT:
     if get_parent().size.x - _shift.x < get_parent().custom_minimum_size.x:
       _shift = Vector2(get_parent().size.x - get_parent().custom_minimum_size.x,0)
-    if move(Vector2(_shift.x,0)):
-      get_parent().size.x -= _shift.x
+    move(Vector2(_shift.x,0))
+    get_parent().size.x -= _shift.x
 
   if direction == Vector2.DOWN:
     if get_parent().global_position.y + _shift.y + get_parent().size.y >= get_tree().root.size.y:return
@@ -89,13 +98,11 @@ func resize(_shift:Vector2):
   if direction == Vector2.UP:
     if get_parent().size.y - _shift.y < get_parent().custom_minimum_size.y:
       _shift = Vector2(0,get_parent().size.y - get_parent().custom_minimum_size.y)
-    if move(Vector2(0,_shift.y)):
-      get_parent().size.y -= _shift.y
+    move(Vector2(0,_shift.y))
+    get_parent().size.y -= _shift.y
 
 
 func change_direction(_direction:Vector2):
-  print(true)
   if not GlobalSettings.edit_mode:return
-  if pressed:return
-  print(direction)
+  if action!=-1:return
   direction= _direction

@@ -60,6 +60,6 @@ func change_text():
     background_setting.text = "- 背景轮换(已关闭) -"
 
   if GlobalSettings.is_full_screen:
-    full_screen.text = "- 窗口化 -"
+    full_screen.text = "- 窗口模式 -"
   else:
-    full_screen.text = "- 全屏化 -"
+    full_screen.text = "- 全屏模式 -"

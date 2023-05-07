@@ -6,7 +6,7 @@ class_name ShortCutComponent
 
 var selected_panel:=false
 
-var shortcuts :Array[String]= []
+var shortcuts :Array[Dictionary]= []
 
 func _ready():
   get_tree().root.files_dropped.connect(load_files)
@@ -27,11 +27,22 @@ func load_files(_files:PackedStringArray):
       add_shortcut(file_path,file_name,icon_path)
 
 func add_shortcut(_file_path:String,_file_name:String,_icon_path:String):
-  var new_shortcut = shortcut_template.instantiate() as ShortCutComponent
+  if not FileAccess.file_exists(_file_path):return
+  if not FileAccess.file_exists(_icon_path):extract_icon(_file_name,_file_path)
+  var new_shortcut = shortcut_template.instantiate() as ShortcutFile
   container.add_child(new_shortcut)
   new_shortcut.set_path(_file_path,_icon_path)
-  shortcuts.append(_file_name)
+  new_shortcut.delete.connect(remove_shorcut)
+  shortcuts.append({file_path=_file_path,file_name=_file_name,icon_path=_icon_path})
   GlobalSettings.save_data()
+
+func remove_shorcut(_shortcut:ShortcutFile):
+  for i in shortcuts.size():
+    var shortcut = shortcuts[i]
+    if shortcut["file_path"] != _shortcut.path:continue
+    shortcuts.remove_at(i)
+    container.remove_child(_shortcut)
+    _shortcut.queue_free()
 
 func extract_icon(_file_name:String,_file_path:String)->String:
   var res_absolute_path = ProjectSettings.globalize_path("res://")
