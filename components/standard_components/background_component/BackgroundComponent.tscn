@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyx3n2sqlq6ov"]
+[gd_scene load_steps=2 format=3 uid="uid://sueyafisf3fc"]
 
-[ext_resource type="Script" path="res://components/background_component/BackgroundComponent.gd" id="1_omth6"]
+[ext_resource type="Script" path="res://components/standard_components/background_component/BackgroundComponent.gd" id="1_omth6"]
 
 [node name="BackgroundComponent" type="Control"]
 layout_mode = 3

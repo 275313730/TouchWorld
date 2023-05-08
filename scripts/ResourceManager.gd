@@ -10,13 +10,14 @@ func _init():
   load_particles()
 
 func load_components():
-  var dirs = DirAccess.get_directories_at("res://components")
+  var standard_component_path = "res://components/standard_components"
+  var dirs = DirAccess.get_directories_at(standard_component_path)
   for dir in dirs:
-    var files = DirAccess.get_files_at("res://components/"+dir)
+    var files = DirAccess.get_files_at(standard_component_path+"/"+dir)
     for file in files:
       if ".tscn" in file:
         var file_name = file.split(".")[0]
-        component_templates[file_name] = load("res://components/"+dir+"/"+file)
+        component_templates[file_name] = load(standard_component_path+"/"+dir+"/"+file)
 
 func load_backgrounds():
   var dir_path = "res://assets/backgrounds"

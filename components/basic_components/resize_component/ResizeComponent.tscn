@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjbu28najjfra"]
+[gd_scene load_steps=2 format=3 uid="uid://biw0qxrb2iqsd"]
 
-[ext_resource type="Script" path="res://components/resize_component/ResizeComponent.gd" id="1_aqt1j"]
+[ext_resource type="Script" path="res://components/basic_components/resize_component/ResizeComponent.gd" id="1_aqt1j"]
 
 [node name="ResizeComponent" type="Control"]
 custom_minimum_size = Vector2(64, 64)

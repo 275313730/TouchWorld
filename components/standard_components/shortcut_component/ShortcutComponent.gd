@@ -1,14 +1,18 @@
-extends Component
+extends StandardComponent
 class_name ShortCutComponent
 
 @export var shortcut_template :PackedScene
 @onready var container = $Container
 
-var selected_panel:=false
 
+var selected_panel:=false
 var shortcuts :Array[Dictionary]= []
 
 func _ready():
+  properties = {
+    shortcut_size=40.0
+  }
+
   get_tree().root.files_dropped.connect(load_files)
   create_icon_folder(ProjectSettings.globalize_path("user://icons"))
 
@@ -33,6 +37,7 @@ func add_shortcut(_file_path:String,_file_name:String,_icon_path:String):
   var new_shortcut = shortcut_template.instantiate() as ShortcutFile
   container.add_child(new_shortcut)
   new_shortcut.set_path(_file_path,_icon_path)
+  new_shortcut.size = properties.shortcut_size
   new_shortcut.delete.connect(remove_shorcut)
   shortcuts.append({file_path=_file_path,file_name=_file_name,icon_path=_icon_path})
   GlobalSettings.save_data()
@@ -66,10 +71,10 @@ func save_data()->Dictionary:
   data["shortcuts"] = shortcuts
   return data
 
-func load_data(_component_data:Dictionary):
-  super(_component_data)
-  for key in _component_data:
-    var data = _component_data[key]
+func load_data(_data:Dictionary):
+  super(_data)
+  for key in _data:
+    var data = _data[key]
     if key != "shortcuts":continue
     for shortcut_data in data:
       add_shortcut(shortcut_data["file_path"],shortcut_data["file_name"],shortcut_data["icon_path"])

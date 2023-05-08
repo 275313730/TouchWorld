@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr8j2qkgtsd7s"]
+
+[ext_resource type="Script" path="res://nodes/component_setting/ComponentSetting.gd" id="1_ol6sj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3k5x"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2s6k"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="ComponentSetting" type="Panel"]
+custom_minimum_size = Vector2(1920, 120)
+anchors_preset = -1
+anchor_top = 0.907407
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_ol6sj")
+metadata/_edit_use_anchors_ = true
+
+[node name="PropertyPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1920, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = -80.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3k5x")
+metadata/_edit_use_anchors_ = true
+
+[node name="PropertyContainer" type="HBoxContainer" parent="PropertyPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.16
+anchor_right = 0.992188
+anchor_bottom = 0.84
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1920, 70)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.925926
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2s6k")
+metadata/_edit_use_anchors_ = true
+
+[node name="ComponentContainer" type="HBoxContainer" parent="SelectPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.2
+anchor_right = 0.992188
+anchor_bottom = 0.8
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true

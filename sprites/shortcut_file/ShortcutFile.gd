@@ -14,7 +14,6 @@ func _ready():
   button.mouse_exited.connect(_on_mouse_exited)
   button.pressed.connect(open_exe)
   delete_button.pressed.connect(func():delete.emit(self))
-  resize()
 
 func _input(_event):
   if GlobalSettings.edit_mode:
@@ -26,13 +25,6 @@ func set_path(_path:String,_icon_path:String):
   path = _path
   var image = Image.load_from_file(_icon_path)
   texture = ImageTexture.create_from_image(image)
-
-func resize():
-  var target_size = Vector2(GlobalSettings.shortcut_size,GlobalSettings.shortcut_size)
-  set_deferred("size",target_size)
-  set_deferred("custom_minimum_size",target_size)
-  button.set_deferred("size",target_size)
-  button.set_deferred("custom_minimum_size",target_size)
 
 func _on_mouse_entered():
   modulate = Color(0.8,0.8,0.8)

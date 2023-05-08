@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3hkpd7ivobmy"]
+[gd_scene load_steps=5 format=3 uid="uid://ckvvjdqxk7le0"]
 
-[ext_resource type="Script" path="res://components/shortcut_component/ShortcutComponent.gd" id="2_2lap2"]
+[ext_resource type="Script" path="res://components/standard_components/shortcut_component/ShortcutComponent.gd" id="2_2lap2"]
 [ext_resource type="PackedScene" uid="uid://dku82jsvjdkcj" path="res://sprites/shortcut_file/ShortcutFile.tscn" id="2_4p04m"]
-[ext_resource type="PackedScene" uid="uid://d0mni82m317ko" path="res://sprites/preset_panel/PresetPanel.tscn" id="3_teawq"]
-[ext_resource type="PackedScene" uid="uid://cjbu28najjfra" path="res://components/resize_component/ResizeComponent.tscn" id="4_xrxoq"]
+[ext_resource type="PackedScene" uid="uid://d0mni82m317ko" path="res://components/basic_components/panel_component/PanelComponent.tscn" id="3_teawq"]
+[ext_resource type="PackedScene" uid="uid://biw0qxrb2iqsd" path="res://components/basic_components/resize_component/ResizeComponent.tscn" id="4_xrxoq"]
 
 [node name="ShortcutComponent" type="Control"]
 custom_minimum_size = Vector2(640, 480)
@@ -31,7 +31,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Container" type="HFlowContainer" parent="."]

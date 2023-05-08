@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqnekwopyrc8e"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://components/particle_component/ParticleComponent.gd" id="1_onf8w"]
+[ext_resource type="Script" path="res://components/standard_components/particle_component/ParticleComponent.gd" id="1_onf8w"]
 [ext_resource type="Texture2D" uid="uid://bw0mpvmqf8xnn" path="res://assets/particles/defalut.png" id="2_tm3sr"]
 
 [sub_resource type="Gradient" id="Gradient_6k0rx"]

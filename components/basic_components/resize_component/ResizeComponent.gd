@@ -1,12 +1,14 @@
-extends Component
+extends BasicComponent
 class_name ResizeComponent
+
+@export var use_resize:=true
+@export var use_move:=true
 
 @onready var right_drag = $RightDrag
 @onready var left_drag = $LeftDrag
 @onready var top_drag = $TopDrag
 @onready var bottom_drag = $BottomDrag
 
-var margin := 20.0
 var action := -1
 var direction := Vector2.ZERO
 var pressed := false
@@ -46,17 +48,21 @@ func _input(event):
     var shift = event.position - last_position
     last_position = event.position
     if action == 0:
+      if not use_move:return
       move(shift)
     elif action == 1:
+      if not use_resize:return
       resize(shift)
 
 func check_edit_mode():
   if GlobalSettings.edit_mode:
-    mouse_default_cursor_shape = Control.CURSOR_DRAG
-    right_drag.mouse_default_cursor_shape = CURSOR_HSIZE
-    left_drag.mouse_default_cursor_shape = CURSOR_HSIZE
-    top_drag.mouse_default_cursor_shape = CURSOR_VSIZE
-    bottom_drag.mouse_default_cursor_shape = CURSOR_VSIZE
+    if use_move:
+      mouse_default_cursor_shape = Control.CURSOR_DRAG
+    if use_resize:
+      right_drag.mouse_default_cursor_shape = CURSOR_HSIZE
+      left_drag.mouse_default_cursor_shape = CURSOR_HSIZE
+      top_drag.mouse_default_cursor_shape = CURSOR_VSIZE
+      bottom_drag.mouse_default_cursor_shape = CURSOR_VSIZE
   else:
     mouse_default_cursor_shape = Control.CURSOR_ARROW
     right_drag.mouse_default_cursor_shape = CURSOR_ARROW

@@ -1,4 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0mni82m317ko"]
+[gd_scene load_steps=3 format=3 uid="uid://d0mni82m317ko"]
+
+[sub_resource type="GDScript" id="GDScript_im4kw"]
+script/source = "extends BasicComponent
+class_name PanelComponent
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyse4"]
 bg_color = Color(0, 0, 0, 0.588235)
@@ -12,13 +17,14 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 20
 
-[node name="PresetPanel" type="Control"]
+[node name="PanelComponent" type="Control"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchor_right = 0.0333333
 anchor_bottom = 0.0592593
 offset_right = -24.0
 offset_bottom = -24.0
+script = SubResource("GDScript_im4kw")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]

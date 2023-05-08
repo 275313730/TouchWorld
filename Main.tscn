@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx8i2ty0qdywp"]
+[gd_scene load_steps=8 format=3 uid="uid://dwpsn56oaqjbd"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_jli1o"]
-[ext_resource type="PackedScene" uid="uid://dyx3n2sqlq6ov" path="res://components/background_component/BackgroundComponent.tscn" id="2_lpgd4"]
-[ext_resource type="PackedScene" uid="uid://d3hkpd7ivobmy" path="res://components/shortcut_component/ShortcutComponent.tscn" id="3_lmoou"]
-[ext_resource type="PackedScene" uid="uid://by0h8cxwg7frl" path="res://components/time_component/TimeComponent.tscn" id="4_ppvs5"]
-[ext_resource type="PackedScene" uid="uid://bqnekwopyrc8e" path="res://components/particle_component/ParticleComponent.tscn" id="5_4qdf2"]
-[ext_resource type="PackedScene" uid="uid://bfov35j3gicna" path="res://options/Options.tscn" id="6_vs25g"]
+[ext_resource type="PackedScene" uid="uid://sueyafisf3fc" path="res://components/standard_components/background_component/BackgroundComponent.tscn" id="2_lpgd4"]
+[ext_resource type="PackedScene" uid="uid://ckvvjdqxk7le0" path="res://components/standard_components/shortcut_component/ShortcutComponent.tscn" id="3_lmoou"]
+[ext_resource type="PackedScene" uid="uid://djf0lyry6scmx" path="res://components/standard_components/time_component/TimeComponent.tscn" id="4_ppvs5"]
+[ext_resource type="PackedScene" path="res://components/standard_components/particle_component/ParticleComponent.tscn" id="5_4qdf2"]
+[ext_resource type="PackedScene" uid="uid://bfov35j3gicna" path="res://nodes/options/Options.tscn" id="6_vs25g"]
+[ext_resource type="PackedScene" uid="uid://dr8j2qkgtsd7s" path="res://nodes/component_setting/ComponentSetting.tscn" id="8_5qjh2"]
 
 [node name="Main" type="Panel"]
 anchors_preset = 15
@@ -54,4 +55,9 @@ offset_bottom = 0.000488281
 [node name="Options" parent="." instance=ExtResource("6_vs25g")]
 visible = false
 layout_mode = 1
-metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ComponentSetting" parent="." instance=ExtResource("8_5qjh2")]
+visible = false
+layout_mode = 1
+offset_top = 160.0

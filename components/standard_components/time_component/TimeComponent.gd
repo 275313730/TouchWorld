@@ -1,4 +1,4 @@
-extends Component
+extends StandardComponent
 class_name TimeComponent
 
 @onready var time_display = $TimeDisplay
@@ -6,6 +6,9 @@ class_name TimeComponent
 var time_passed := 0.0
 
 func _ready():
+  properties = {
+    mode = 0
+  }
   show_time()
 
 func _process(_delta:float):
