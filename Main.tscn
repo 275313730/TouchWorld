@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwpsn56oaqjbd"]
+[gd_scene load_steps=9 format=3 uid="uid://dwpsn56oaqjbd"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_jli1o"]
 [ext_resource type="PackedScene" uid="uid://sueyafisf3fc" path="res://components/standard_components/background_component/BackgroundComponent.tscn" id="2_lpgd4"]
 [ext_resource type="PackedScene" uid="uid://ckvvjdqxk7le0" path="res://components/standard_components/shortcut_component/ShortcutComponent.tscn" id="3_lmoou"]
 [ext_resource type="PackedScene" uid="uid://djf0lyry6scmx" path="res://components/standard_components/time_component/TimeComponent.tscn" id="4_ppvs5"]
-[ext_resource type="PackedScene" path="res://components/standard_components/particle_component/ParticleComponent.tscn" id="5_4qdf2"]
+[ext_resource type="PackedScene" uid="uid://d16nfa0bdm0s1" path="res://components/standard_components/particle_component/ParticleComponent.tscn" id="5_4qdf2"]
+[ext_resource type="PackedScene" uid="uid://dkmj8ffrr0goo" path="res://components/standard_components/computer_status_component/ComputerStatusComponent.tscn" id="6_5c502"]
 [ext_resource type="PackedScene" uid="uid://bfov35j3gicna" path="res://nodes/options/Options.tscn" id="6_vs25g"]
 [ext_resource type="PackedScene" uid="uid://dr8j2qkgtsd7s" path="res://nodes/component_setting/ComponentSetting.tscn" id="8_5qjh2"]
 
@@ -51,6 +52,8 @@ anchor_right = 0.384895
 anchor_bottom = 0.537962
 offset_right = 0.000671387
 offset_bottom = 0.000488281
+
+[node name="ComputerStatusComponent" parent="Components" instance=ExtResource("6_5c502")]
 
 [node name="Options" parent="." instance=ExtResource("6_vs25g")]
 visible = false

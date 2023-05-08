@@ -3,12 +3,14 @@ class_name TimeComponent
 
 @onready var time_display = $TimeDisplay
 
+
+var mode = Property.new("mode","时钟模式",0)
 var time_passed := 0.0
 
 func _ready():
-  properties = {
-    mode = 0
-  }
+  description = "时钟组件"
+
+  properties = [mode]
   show_time()
 
 func _process(_delta:float):

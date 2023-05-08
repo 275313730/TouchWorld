@@ -15,33 +15,32 @@ func load_components():
 
   for data in GlobalSettings.components:
     var new_select = Button.new()
-    new_select.text = data.type
-    new_select.pressed.connect(func():load_properties(data.properties))
+    new_select.text = data.description
+    new_select.pressed.connect(func():load_properties(data.uid,data.properties))
     component_container.add_child(new_select)
 
-func load_properties(_properties:Dictionary):
+func load_properties(_uid:int,_properties:Array):
   for line in property_container.get_children():
     property_container.remove_child(line)
     line.queue_free()
 
-  for key in _properties:
-    if key == "uid":continue
-    var line = create_property_line(key)
-    var value = _properties[key]
+  for property in _properties:
+    var line = create_property_line(property.description)
+    var value = property.value
 
     if typeof(value) == TYPE_STRING:
       var input = create_input(value)
-      input.text_changed.connect(func(_text):change_property(_properties,key,_text))
+      input.text_changed.connect(func(_text):change_property(_uid,property,_text))
       line.add_child(input)
 
     if typeof(value) == TYPE_FLOAT or typeof(value) == TYPE_INT:
       var spin = create_spin(value)
-      spin.value_changed.connect(func(_value):change_property(_properties,key,_value))
+      spin.value_changed.connect(func(_value):change_property(_uid,property,_value))
       line.add_child(spin)
 
     if typeof(value) == TYPE_BOOL:
       var check = create_check_button(value)
-      check.pressed.connect(func():change_property(_properties,key,check.button_pressed))
+      check.pressed.connect(func():change_property(_uid,property,check.button_pressed))
       line.add_child(check)
 
     property_container.add_child(line)
@@ -70,7 +69,6 @@ func create_check_button(_value:bool)->CheckButton:
   check.button_pressed = _value
   return check
 
-func change_property(_properties:Dictionary,_key:String,_value):
-  var uid = _properties.uid
-  _properties[_key] = _value
-  Notify.change_property.emit(uid,_key,_value)
+func change_property(_uid:int,_property:Dictionary,_value):
+  _property.value = _value
+  Notify.change_property.emit(_uid,_property.key,_value)

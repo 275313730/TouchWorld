@@ -12,10 +12,10 @@ func _ready():
   component_setting.pressed.connect(func():enter_component_setting(true))
   exit.pressed.connect(func():GlobalSettings.save_data();get_tree().quit())
 
-  change_text()
-
 func _unhandled_key_input(event:InputEvent):
   if event.keycode == KEY_ESCAPE and not event.is_pressed():
+    GlobalSettings.save_data()
+    change_text()
     change_edit_mode(false)
     enter_component_setting(false)
     if visible == true:
@@ -32,8 +32,10 @@ func change_screen():
   GlobalSettings.is_full_screen = !GlobalSettings.is_full_screen
   if GlobalSettings.is_full_screen:
     get_window().mode = Window.MODE_FULLSCREEN
+    get_window().borderless = true
   else:
     get_window().mode = Window.MODE_WINDOWED
+    get_window().borderless = false
   change_text()
 
 func enter_component_setting(_status:bool):
