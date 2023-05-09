@@ -13,13 +13,15 @@ func load_components():
     component_container.remove_child(child)
     child.queue_free()
 
-  for data in GlobalSettings.components:
+  var container = get_tree().get_nodes_in_group("Persist")[0]
+  var components = container.get_children() as Array[StandardComponent]
+  for c in components:
     var new_select = Button.new()
-    new_select.text = data.description
-    new_select.pressed.connect(func():load_properties(data.uid,data.properties))
+    new_select.text = c.description
+    new_select.pressed.connect(func():load_properties(c.properties))
     component_container.add_child(new_select)
 
-func load_properties(_uid:int,_properties:Array):
+func load_properties(_properties:Array[Property]):
   for line in property_container.get_children():
     property_container.remove_child(line)
     line.queue_free()
@@ -30,17 +32,17 @@ func load_properties(_uid:int,_properties:Array):
 
     if typeof(value) == TYPE_STRING:
       var input = create_input(value)
-      input.text_changed.connect(func(_text):change_property(_uid,property,_text))
+      input.text_changed.connect(func(_text):property.value = _text)
       line.add_child(input)
 
     if typeof(value) == TYPE_FLOAT or typeof(value) == TYPE_INT:
       var spin = create_spin(value)
-      spin.value_changed.connect(func(_value):change_property(_uid,property,_value))
+      spin.value_changed.connect(func(_value):property.value = _value)
       line.add_child(spin)
 
     if typeof(value) == TYPE_BOOL:
       var check = create_check_button(value)
-      check.pressed.connect(func():change_property(_uid,property,check.button_pressed))
+      check.pressed.connect(func():property.value = check.button_pressed)
       line.add_child(check)
 
     property_container.add_child(line)
@@ -68,7 +70,3 @@ func create_check_button(_value:bool)->CheckButton:
   var check = CheckButton.new()
   check.button_pressed = _value
   return check
-
-func change_property(_uid:int,_property:Dictionary,_value):
-  _property.value = _value
-  Notify.change_property.emit(_uid,_property.key,_value)

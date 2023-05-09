@@ -9,16 +9,13 @@ var properties :Array[Property] = []
 
 var loading:=false
 
-func _init():
-  Notify.change_property.connect(change_property)
-
-func change_property(_uid:int,_key:String,_value):
-  if uid != _uid:return
+func _ready():
+  _on_ready()
   for property in properties:
-    if property.key == _key:
-      property.value = _value
-      break
-  GlobalSettings.save_data()
+    property.value_changed.connect(func(_old_value,_new_value):GlobalSettings.save_data())
+
+func _on_ready():
+  pass
 
 func save_data()->Dictionary:
   var data = {type=name,description=description,uid=uid,position={x=position.x,y=position.y},size={x=size.x,y=size.y}}

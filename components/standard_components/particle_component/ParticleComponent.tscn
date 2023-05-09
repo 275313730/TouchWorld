@@ -36,7 +36,6 @@ script = ExtResource("1_onf8w")
 metadata/_edit_use_anchors_ = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
 position = Vector2(939, 502)
 amount = 50
 lifetime = 60.0
@@ -60,6 +59,7 @@ hue_variation_min = -0.1
 hue_variation_max = 0.1
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(975, 532)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_x7hpa")

@@ -4,7 +4,7 @@ class_name Main
 @onready var components = $Components
 
 func _ready():
-  Notify.main_ready.emit()
+  GlobalSettings.init()
   if GlobalSettings.is_full_screen:
     get_window().mode = Window.MODE_FULLSCREEN
   else:

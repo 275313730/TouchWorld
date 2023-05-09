@@ -12,7 +12,7 @@ var current_color := Color(0.8,0.8,0.8,1)
 var current_time := 0.0
 var current_texture := 1
 
-func _ready():
+func _on_ready():
   description = "背景组件"
 
   properties = [brightness,auto_change,time]
@@ -21,7 +21,6 @@ func _ready():
   modulate = current_color
   texture_rect.texture = ResourceManager.backgrounds.pick_random()
   texture_rect_2.modulate = Color(0,0,0,0)
-
 
 func _process(_delta:float):
   if ResourceManager.backgrounds.size() == 1:return

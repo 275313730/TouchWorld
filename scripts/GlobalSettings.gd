@@ -14,8 +14,7 @@ var is_full_screen:=false
 
 var components := []
 
-func _ready():
-  await Notify.main_ready
+func init():
   if FileAccess.file_exists("user://touch_world.dat"):
     load_data()
   else:
